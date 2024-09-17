@@ -1,0 +1,21 @@
+"Contenerising a application in docker"
+  here we are taking a todo app (github repo:https://github.com/Bishnupriya548/learn_docker)
+  In this app as we have used node.js so we are contenerising a node js app using docker
+1.creating a file called DockerFile
+  content of the file:(We have to write it according to our application type)
+FROM node:21-alpine
+WORKDIR /usr/src/app
+COPY package.json package-lock.json ./
+RUN npm install
+COPY . .
+EXPOSE 3000
+CMD ["npm" , "start"]
+
+
+  2.docker build -t learn_docker .
+
+  3.docker ps
+
+   docker images
+4.docker run -it -d -p 3000:3000 learn_docker  (learn_docker is application name we are using)
+  
