@@ -3,19 +3,19 @@
   In this app as we have used node.js so we are contenerising a node js app using docker
 1.creating a file called DockerFile
   content of the file:(We have to write it according to our application type)
-FROM node:21-alpine
-WORKDIR /usr/src/app
-COPY package.json package-lock.json ./
-RUN npm install
-COPY . .
-EXPOSE 3000
-CMD ["npm" , "start"]
+FROM node:21-alpine   #to specify the base image for the Docker container
+WORKDIR /usr/src/app     #setting the working directory
+COPY package.json package-lock.json ./     #to copy package.json and package-lock.json files from the local machine into the working directory inside the container
+RUN npm install  #to install dependencies
+COPY . .    #to copy rest of the application
+EXPOSE 3000   #port where the application will run
+CMD ["npm" , "start"]   #the command to run when the container starts
 
 
-  2.docker build -t learn_docker .
+  2.docker build -t learn_docker .  #creates a Docker image named learn_docker using the Dockerfile in the current directory which packages the application and its dependencies into an image
 
-  3.docker ps
+  3.docker ps    #ists all the currently running Docker containers
 
-   docker images
+   docker images   #lists all the Docker images stored on the local system
 4.docker run -it -d -p 3000:3000 learn_docker  (learn_docker is application name we are using)
-  
+  # It will map port 3000 of the container to port 3000 on the host machine, allowing us to access the application.
